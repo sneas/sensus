@@ -22,7 +22,16 @@ export const analyze = async (
     model: "gpt-3.5-turbo",
   });
 
-  return await buildResponse({ body: JSON.stringify(completion.choices) });
+  console.log(`Got request ${event.body}. Analyzer responded with: ${JSON.stringify(completion)}`);
+
+  let response;
+  try {
+    response = JSON.parse(completion.choices[0].message.content);
+  } catch(e) {
+    throw new Error(`Failed to parse analyzer's response as JSON: ${e}`);
+  }
+
+  return await buildResponse({ body: JSON.stringify(response) });
 }
 
 const isAnalysisRequest = (request: any): request is AnalysisRequest => {
@@ -45,10 +54,20 @@ const createPrompt = (analysisRequest: AnalysisRequest): string => (
    * Usefullness (1 means useless, 5 means very useful)
    * Agreeableness (1 mean disagreeable, 5 means very agreeable)
 
+  For each property please provide explanation or reasoning about why
+  certain score was assigned.
+
   MY_COMMENT: ${analysisRequest.comment}
 
   Please respond in JSON, as in following example:
-  { "Politeness": 3, "Usefullness": 5, "Agreeableness": 4 }
+  {
+    "Politeness": 3,
+    "PolitenessReason": "Comment was somewhat polite, but some sentences were rude...",
+    "Usefulness": 5,
+    "UsefulnessReason": "Comment very provided useful about...",
+    "Agreeableness": 4,
+    "AgreeablenessReason": "Comment is quite agreeable because..."
+  }
   `
 )
 
