@@ -1,0 +1,22 @@
+{
+  "name": "@sensus/extension-content-script",
+  "version": "0.0.0",
+  "private": true,
+  "description": "translation-extension",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "webpack serve --env development --open",
+    "start": "npm-run-all --parallel watch serve",
+    "test": "jest",
+    "extension-content-script": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vocably-pro/vocably.git"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
