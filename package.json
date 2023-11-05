@@ -23,5 +23,8 @@
     "ts-loader": "^9.5.0",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "openai": "^4.15.3"
   }
 }
