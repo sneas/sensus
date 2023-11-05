@@ -1,0 +1,29 @@
+.score {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 20px;
+  text-align: center;
+  font-style: normal;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 50%;
+  border-width: 2px;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+.score-1, .score-2 {
+  background-color: #dd2222;
+  border-color: #c71f1f;
+}
+
+.score-3 {
+  background-color: #ff9e25;
+  border-color: #ff930b;
+}
+
+.score-4, .score-5 {
+  background-color: #00e3a0;
+  border-color: #00c98e;
+}
