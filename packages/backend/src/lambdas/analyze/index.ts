@@ -55,19 +55,13 @@ const createPrompt = (analysisRequest: AnalysisRequest): string => (
    * Usefullness (1 means useless, 5 means very useful)
    * Agreeableness (1 mean disagreeable, 5 means very agreeable)
 
-  For each property please provide explanation or reasoning about why
-  certain score was assigned.
-
-  MY_COMMENT: ${analysisRequest.comment}
+   MY_COMMENT: ${analysisRequest.comment}
 
   Please respond in JSON, as in following example:
   {
     "politeness": 3,
-    "politenessReason": "Comment was somewhat polite, but some sentences were rude...",
     "usefulness": 5,
-    "usefulnessReason": "Comment very provided useful about...",
-    "agreeableness": 4,
-    "agreeablenessReason": "Comment is quite agreeable because..."
+    "agreeableness": 4
   }
   `
 )
