@@ -27,6 +27,7 @@ export const analyze = async (
   let response;
   try {
     response = JSON.parse(completion.choices[0].message.content);
+    response['averageScore'] = (response.politeness + response.agreeableness + response.usefulness) / 3.0;
   } catch(e) {
     throw new Error(`Failed to parse analyzer's response as JSON: ${e}`);
   }
@@ -61,12 +62,12 @@ const createPrompt = (analysisRequest: AnalysisRequest): string => (
 
   Please respond in JSON, as in following example:
   {
-    "Politeness": 3,
-    "PolitenessReason": "Comment was somewhat polite, but some sentences were rude...",
-    "Usefulness": 5,
-    "UsefulnessReason": "Comment very provided useful about...",
-    "Agreeableness": 4,
-    "AgreeablenessReason": "Comment is quite agreeable because..."
+    "politeness": 3,
+    "politenessReason": "Comment was somewhat polite, but some sentences were rude...",
+    "usefulness": 5,
+    "usefulnessReason": "Comment very provided useful about...",
+    "agreeableness": 4,
+    "agreeablenessReason": "Comment is quite agreeable because..."
   }
   `
 )
