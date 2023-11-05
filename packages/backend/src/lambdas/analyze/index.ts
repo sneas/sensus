@@ -20,6 +20,8 @@ export const analyze = async (
   const completion = await openai.chat.completions.create({
     messages: [{ role: "user", content: createPrompt(request) }],
     model: "gpt-3.5-turbo",
+    temperature: 0,
+    top_p: 0,
   });
 
   console.log(`Got request ${event.body}. Analyzer responded with: ${JSON.stringify(completion)}`);
