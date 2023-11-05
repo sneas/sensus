@@ -27,7 +27,7 @@ export const analyze = async (
   let response;
   try {
     response = JSON.parse(completion.choices[0].message.content);
-    response['averageScore'] = (response.politeness + response.agreeableness + response.usefulness) / 3.0;
+    response.averageScore = (response.politeness + response.agreeableness + response.usefulness) / 3.0;
   } catch(e) {
     throw new Error(`Failed to parse analyzer's response as JSON: ${e}`);
   }
@@ -48,11 +48,11 @@ const isAnalysisRequest = (request: any): request is AnalysisRequest => {
 }
 
 const createPrompt = (analysisRequest: AnalysisRequest): string => (
-  `I'm writing comment to Github issue or pull request.
+  `I'm writing comment in Github.
    Given comment in MY_COMMENT section, rate following
    properties of my comment from 1 to 5:
    * politeness
-   * usefullness
+   * usefulness
    * agreeableness
 
   MY_COMMENT: ${analysisRequest.comment}
