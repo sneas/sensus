@@ -50,22 +50,16 @@ const isAnalysisRequest = (request: any): request is AnalysisRequest => {
 }
 
 const createPrompt = (analysisRequest: AnalysisRequest): string => (
-  `I'm writing comment in Github.
-   Given comment in MY_COMMENT section, rate following
-   properties of my comment from 1 to 5:
-   * politeness
-   * usefulness
-   * agreeableness
-
-  MY_COMMENT: ${analysisRequest.comment}
-
-  Respond in JSON, as in example:
-  {
-    "politeness": 3,
-    "usefulness": 5,
-    "agreeableness": 4
-  }
-  `
+  [
+    "I'm writing comment for Github issue or pull request. Given comment in MY_COMMENT section, rate following properties of my comment from 1 to 5:",
+    "* politeness",
+    "* usefulness",
+    "* agreeableness",
+    "",
+    `MY_COMMENT: ${analysisRequest.comment}`,
+    "",
+    "Respond in JSON, as in example: {\"politeness\":3,\"usefulness\":5,\"agreeableness\":4}"
+  ].join('\n')
 )
 
 exports.analyze = analyze;
