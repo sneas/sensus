@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Sensus - Constructive GitHub Comments",
+  "description": "Your little helper for more humane, constructive GitHub comments.",
+  "version": "1.0.0",
+
+  "icons": {
+    "16": "images/icon-16x16.png",
+    "32": "images/icon-32x32.png",
+    "48": "images/icon-48x48.png",
+    "128": "images/icon-128x128.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["content-script.js"]
+    }
+  ],
+
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+
+  "host_permissions": ["https://*/"]
+}

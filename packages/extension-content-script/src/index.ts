@@ -1,8 +1,9 @@
+import '@webcomponents/custom-elements';
 import { debounce } from 'lodash-es';
 import { defineCustomElements } from '@sensus/extension-content-ui/loader';
 
 type ContentScriptOptions = {
-  analyse: (comment: string) => Promise<number>
+  analyze: (comment: string) => Promise<number>
 }
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -26,8 +27,8 @@ const showIcon = ({ textarea, icon }: ShowIconOptions) => {
   currentIcon = icon;
 }
 
-export const registerContentScript = async ({ analyse }: ContentScriptOptions) => {
-  await defineCustomElements();
+export const registerContentScript = async ({ analyze }: ContentScriptOptions) => {
+  defineCustomElements().then();
   while (true) {
     const commentTextarea = document
       .querySelector<HTMLTextAreaElement>('[name="comment[body]"]:not(.sensus)');
@@ -43,8 +44,9 @@ export const registerContentScript = async ({ analyse }: ContentScriptOptions) =
         icon: document.createElement('sensus-icon-spin'),
       });
 
-      const result = await analyse(commentTextarea.value);
+      const result = await analyze(commentTextarea.value);
       const scoreIcon = document.createElement('sensus-score');
+      // @ts-ignore
       scoreIcon.value = result;
       showIcon({
         textarea: commentTextarea,

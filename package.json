@@ -18,8 +18,10 @@
     "@types/aws-lambda": "^8.10.125",
     "@types/jest": "^27.4.1",
     "@types/lodash-es": "^4.17.10",
+    "@vocably/hermes": "^1.0.1",
     "aws-sdk": "^2.1488.0",
     "console-info": "^0.0.5",
+    "copy-webpack-plugin": "^11.0.0",
     "dotenv-flow": "^4.0.0",
     "html-webpack-plugin": "^5.5.3",
     "jest": "^27.5.1",
@@ -30,9 +32,11 @@
     "ts-loader": "^9.5.0",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.10.0"
   },
   "dependencies": {
+    "@webcomponents/custom-elements": "^1.6.0",
     "openai": "^4.15.3"
   }
 }
