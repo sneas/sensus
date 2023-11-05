@@ -48,16 +48,16 @@ const isAnalysisRequest = (request: any): request is AnalysisRequest => {
 }
 
 const createPrompt = (analysisRequest: AnalysisRequest): string => (
-  `I'm writing comment to an issue or pull request in Github.
-   Given my comment below in MY_COMMENT section, can you rate following
+  `I'm writing comment to Github issue or pull request.
+   Given comment in MY_COMMENT section, rate following
    properties of my comment from 1 to 5:
-   * Politeness (1 means impolite, 5 means very polite)
-   * Usefullness (1 means useless, 5 means very useful)
-   * Agreeableness (1 mean disagreeable, 5 means very agreeable)
+   * politeness
+   * usefullness
+   * agreeableness
 
-   MY_COMMENT: ${analysisRequest.comment}
+  MY_COMMENT: ${analysisRequest.comment}
 
-  Please respond in JSON, as in following example:
+  Respond in JSON, as in example:
   {
     "politeness": 3,
     "usefulness": 5,
