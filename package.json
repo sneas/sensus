@@ -16,6 +16,7 @@
     "@types/aws-lambda": "^8.10.125",
     "@types/jest": "^27.4.1",
     "aws-sdk": "^2.1488.0",
+    "console-info": "^0.0.5",
     "dotenv-flow": "^4.0.0",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
