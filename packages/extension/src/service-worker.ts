@@ -11,5 +11,5 @@ onAnalyzeRequest(async (sendResponse, comment) => {
 
   console.log(result);
 
-  return sendResponse(Math.ceil(result.averageScore));
+  return sendResponse(Math.round(result.averageScore));
 });
