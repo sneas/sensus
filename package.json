@@ -4,7 +4,8 @@
   "private": true,
   "repository": "git@github.com:sneas/sensus.git",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "zx ./scripts/build.mjs"
   },
   "license": "proprietary",
   "workspaces": {
@@ -33,7 +34,8 @@
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
-    "webpack-merge": "^5.10.0"
+    "webpack-merge": "^5.10.0",
+    "zx": "^7.2.3"
   },
   "dependencies": {
     "@webcomponents/custom-elements": "^1.6.0",
