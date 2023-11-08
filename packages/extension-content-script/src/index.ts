@@ -29,6 +29,8 @@ const showIcon = ({ textarea, icon }: ShowIconOptions) => {
 
 export const registerContentScript = async ({ analyze }: ContentScriptOptions) => {
   defineCustomElements().then();
+
+  let previousValue = '';
   while (true) {
     const commentTextarea = document
       .querySelector<HTMLTextAreaElement>('[name="comment[body]"]:not(.sensus)');
@@ -38,7 +40,20 @@ export const registerContentScript = async ({ analyze }: ContentScriptOptions) =
       continue;
     }
 
-    commentTextarea.addEventListener('keyup', debounce(async (event) => {
+    previousValue = commentTextarea.value;
+
+    commentTextarea.addEventListener('keyup', debounce(async () => {
+      if (commentTextarea.value.trim() === '' && currentIcon) {
+        currentIcon.remove();
+        return;
+      }
+
+      if (commentTextarea.value === previousValue) {
+        return;
+      }
+
+      previousValue = commentTextarea.value;
+
       showIcon({
         textarea: commentTextarea,
         icon: document.createElement('sensus-icon-spin'),
