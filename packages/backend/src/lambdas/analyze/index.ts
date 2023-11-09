@@ -2,8 +2,11 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { buildResponse } from '../../buildResponse';
 import 'openai/shims/node';
 import OpenAI from 'openai';
+import { getEncodingNameForModel, getEncoding } from 'js-tiktoken';
 
+const OPENAI_MODEL = 'gpt-3.5-turbo';
 const openai = new OpenAI();
+const tokenCodec = getEncoding(getEncodingNameForModel(OPENAI_MODEL));
 
 export type AnalysisRequest = {
   comment: string;
@@ -21,7 +24,7 @@ export const analyze = async (
 
   const completion = await openai.chat.completions.create({
     messages: [{ role: "user", content: promptContent }],
-    model: "gpt-3.5-turbo",
+    model: OPENAI_MODEL,
     temperature: 0,
     top_p: 0,
   });
@@ -41,12 +44,11 @@ export const analyze = async (
 
 const truncateComment = (comment: string): string => {
   const MAX_TOKENS = 100;
-  const tokens = comment
-    .split(/([^A-Za-z])/g)
-    .map((token) => token.trim())
-    .filter((token) => token !== '');
+  const tokens = tokenCodec
+			.encode(comment)
+			.map((token: number): string => tokenCodec.decode([token]));
   tokens.splice(MAX_TOKENS);
-  return tokens.join(' ');
+  return tokens.join('');
 };
 
 const isAnalysisRequest = (request: any): request is AnalysisRequest => {
