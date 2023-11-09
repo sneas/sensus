@@ -5,5 +5,8 @@
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit",
     "build": "webpack --config webpack.config.js"
+  },
+  "dependencies": {
+    "js-tiktoken": "^1.0.7"
   }
 }
