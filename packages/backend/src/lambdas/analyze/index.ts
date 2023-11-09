@@ -17,14 +17,16 @@ export const analyze = async (
     throw new Error('Request is malformed');
   }
 
+  const promptContent = createPrompt(request);
+
   const completion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: createPrompt(request) }],
+    messages: [{ role: "user", content: promptContent }],
     model: "gpt-3.5-turbo",
     temperature: 0,
     top_p: 0,
   });
 
-  console.log(`Got request ${event.body}. Analyzer responded with: ${JSON.stringify(completion)}`);
+  console.log(`Sent prompt ${promptContent}. Analyzer responded with: ${JSON.stringify(completion)}`);
 
   let response;
   try {
@@ -36,6 +38,16 @@ export const analyze = async (
 
   return await buildResponse({ body: JSON.stringify(response) });
 }
+
+const truncateComment = (comment: string): string => {
+  const MAX_TOKENS = 100;
+  const tokens = comment
+    .split(/([^A-Za-z])/g)
+    .map((token) => token.trim())
+    .filter((token) => token !== '');
+  tokens.splice(MAX_TOKENS);
+  return tokens.join(' ');
+};
 
 const isAnalysisRequest = (request: any): request is AnalysisRequest => {
   if (!('comment' in request)) {
@@ -49,17 +61,18 @@ const isAnalysisRequest = (request: any): request is AnalysisRequest => {
   return true;
 }
 
-const createPrompt = (analysisRequest: AnalysisRequest): string => (
-  [
+const createPrompt = (analysisRequest: AnalysisRequest): string => {
+  const truncatedComment = truncateComment(analysisRequest.comment);
+  return [
     "I'm writing comment for Github issue or pull request. Given comment in MY_COMMENT section, rate following properties of my comment from 1 to 5:",
     "* politeness",
     "* usefulness",
     "* agreeableness",
     "",
-    `MY_COMMENT: ${analysisRequest.comment}`,
+    `MY_COMMENT: ${truncatedComment}`,
     "",
-    "Respond in JSON, as in example: {\"politeness\":3,\"usefulness\":5,\"agreeableness\":4}"
-  ].join('\n')
-)
+    "Respond in JSON, as in example: {\"politeness\":1,\"usefulness\":3,\"agreeableness\":4}"
+  ].join('\n');
+}
 
 exports.analyze = analyze;
