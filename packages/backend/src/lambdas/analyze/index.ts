@@ -34,7 +34,7 @@ export const analyze = async (
   let response;
   try {
     response = JSON.parse(completion.choices[0].message.content);
-    response.averageScore = (response.politeness + response.agreeableness + response.usefulness) / 3.0;
+    response.averageScore = Math.round((response.politeness + response.agreeableness + response.usefulness) / 3.0);
   } catch(e) {
     throw new Error(`Failed to parse analyzer's response as JSON: ${e}`);
   }
