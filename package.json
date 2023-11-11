@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@webcomponents/custom-elements": "^1.6.0",
+    "js-tiktoken": "^1.0.7",
     "openai": "^4.15.3"
   }
 }
