@@ -1,19 +1,38 @@
-.spinner_VpEe {
-  animation: spinner_vXu6 1.2s cubic-bezier(0.52, 0.6, 0.25, 0.99) infinite;
+.spinner_nOfF {
+  fill: #9D9D9D;
+  animation: spinner_qtyZ 2s cubic-bezier(0.36, .6, .31, 1) infinite
 }
-.spinner_eahp {
-  animation-delay: 0.4s;
+
+.spinner_fVhf {
+  animation-delay: -.5s
 }
-.spinner_f7Y2 {
-  animation-delay: 0.8s;
+
+.spinner_piVe {
+  animation-delay: -1s
 }
-@keyframes spinner_vXu6 {
+
+.spinner_MSNs {
+  animation-delay: -1.5s
+}
+
+@keyframes spinner_qtyZ {
   0% {
-    r: 0;
-    opacity: 1;
+    r: 0
+  }
+  25% {
+    r: 3px;
+    cx: 4px
+  }
+  50% {
+    r: 3px;
+    cx: 12px
+  }
+  75% {
+    r: 3px;
+    cx: 20px
   }
   100% {
-    r: 11px;
-    opacity: 0;
+    r: 0;
+    cx: 20px
   }
 }
