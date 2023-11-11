@@ -3,14 +3,11 @@ import { buildResponse } from '../../buildResponse';
 import 'openai/shims/node';
 import OpenAI from 'openai';
 import { getEncodingNameForModel, getEncoding } from 'js-tiktoken';
+import { Analysis, AnalysisRequest } from '@sensus/model';
 
 const OPENAI_MODEL = 'gpt-3.5-turbo';
 const openai = new OpenAI();
 const tokenCodec = getEncoding(getEncodingNameForModel(OPENAI_MODEL));
-
-export type AnalysisRequest = {
-  comment: string;
-};
 
 export const analyze = async (
   event: APIGatewayProxyEvent
@@ -31,7 +28,7 @@ export const analyze = async (
 
   console.log(`Sent prompt ${promptContent}. Analyzer responded with: ${JSON.stringify(completion)}`);
 
-  let response;
+  let response: Analysis;
   try {
     response = JSON.parse(completion.choices[0].message.content);
     response.averageScore = Math.round((response.politeness + response.agreeableness + response.usefulness) / 3.0);

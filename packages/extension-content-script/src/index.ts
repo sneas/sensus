@@ -1,9 +1,10 @@
 import '@webcomponents/custom-elements';
 import { debounce } from 'lodash-es';
 import { defineCustomElements } from '@sensus/extension-content-ui/loader';
+import { analyze } from '@sensus/extension-api';
 
 type ContentScriptOptions = {
-  analyze: (comment: string) => Promise<number>
+  analyze: typeof analyze;
 }
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -16,16 +17,21 @@ type ShowIconOptions = {
 let currentIcon: HTMLElement | null = null;
 const showIcon = ({ textarea, icon }: ShowIconOptions) => {
   icon.style.position = 'absolute';
-  icon.style.top = `${textarea.offsetTop + 10}px`;
-  icon.style.left = `${textarea.offsetLeft + textarea.offsetWidth - 36}px`;
+  icon.style.top = `8px`;
+  icon.style.right = `8px`;
 
-  if (currentIcon) {
-    currentIcon.remove();
-  }
+  hideIcon();
 
   textarea.parentElement?.appendChild(icon);
   currentIcon = icon;
 }
+
+const hideIcon = () => {
+  if (currentIcon) {
+    currentIcon.remove();
+    currentIcon = null;
+  }
+};
 
 export const registerContentScript = async ({ analyze }: ContentScriptOptions) => {
   defineCustomElements().then();
@@ -60,9 +66,14 @@ export const registerContentScript = async ({ analyze }: ContentScriptOptions) =
       });
 
       const result = await analyze(commentTextarea.value);
+
+      if (result.status === 'failure') {
+        hideIcon();
+        return;
+      }
+
       const scoreIcon = document.createElement('sensus-score');
-      // @ts-ignore
-      scoreIcon.value = result;
+      scoreIcon.value = result.value.averageScore;
       showIcon({
         textarea: commentTextarea,
         icon: scoreIcon,
