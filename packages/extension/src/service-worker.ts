@@ -33,3 +33,8 @@ onAnalyzeRequest(async (sendResponse, comment) => {
 
   return sendResponse(result);
 });
+
+
+chrome.runtime.setUninstallURL(
+    'https://docs.google.com/forms/d/e/1FAIpQLScqSjT41DScPl_ODGa20VYLAlB0E2N42TxWIOo5_UiXOFUmGg/viewform?usp=sf_link'
+);

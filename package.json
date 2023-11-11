@@ -38,6 +38,7 @@
     "zx": "^7.2.3"
   },
   "dependencies": {
+    "@types/chrome": "^0.0.251",
     "@webcomponents/custom-elements": "^1.6.0",
     "js-tiktoken": "^1.0.7",
     "openai": "^4.15.3"
