@@ -18,7 +18,7 @@ let currentIcon: HTMLElement | null = null;
 const showIcon = ({ textarea, icon }: ShowIconOptions) => {
   icon.style.position = 'absolute';
   icon.style.top = `8px`;
-  icon.style.right = `8px`;
+  icon.style.right = `16px`;
 
   hideIcon();
 
