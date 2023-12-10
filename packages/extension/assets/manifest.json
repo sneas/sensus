@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Sensus - Constructive GitHub Comments",
   "description": "Your unobtrusive AI helper for more humane, constructive GitHub comments.",
-  "version": "1.2.0",
+  "version": "1.1.1",
 
   "icons": {
     "16": "images/icon-16x16.png",
