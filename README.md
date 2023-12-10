@@ -4,6 +4,10 @@ A browser extension that shows the opinionated constructiveness of your comments
 
 https://chromewebstore.google.com/detail/sensus-constructive-githu/eeeacchbfimdlomgbdfchlpghjlcmeod
 
+## Why?
+
+This repo's authors believe positive reinforcement is the most humane way to affect people's behavior.
+
 ## How it works
 
 Every time you type a text in the comment textarea on GitHub, Sensus:

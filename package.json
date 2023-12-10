@@ -10,7 +10,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "zx ./scripts/build.mjs"
+    "build": "zx ./scripts/build.mjs",
+    "archive": "zx ./scripts/archive-extension.mjs"
   },
   "devDependencies": {
     "@stencil/core": "^2.22.3",
