@@ -1,6 +1,6 @@
 # Sensus 🟢
 
-A browser extension that shows the constructiveness of your comments on GitHub.
+A browser extension that shows the opinionated constructiveness of your comments on GitHub.
 
 https://chromewebstore.google.com/detail/sensus-constructive-githu/eeeacchbfimdlomgbdfchlpghjlcmeod
 
