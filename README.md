@@ -16,7 +16,7 @@ Every time you type a text in the comment textarea on GitHub, Sensus:
 ## How to build
 
 ```sh
-npm instal
+npm install
 npm run build
 ```
 
