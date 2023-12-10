@@ -1,7 +1,6 @@
 {
   "name": "@sensus/extension",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
     "build": "webpack --env production",
     "start": "webpack --watch --env development",

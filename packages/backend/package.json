@@ -1,7 +1,6 @@
 {
   "name": "@sensus/backend",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit",
     "build": "webpack --config webpack.config.js"

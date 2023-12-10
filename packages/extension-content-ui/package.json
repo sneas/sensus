@@ -23,6 +23,5 @@
     "integration.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "extension-content-ui": "npm-run-all --parallel start build-watch"
-  },
-  "license": "proprietary"
+  }
 }
